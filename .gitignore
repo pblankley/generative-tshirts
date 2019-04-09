@@ -9,6 +9,7 @@ __pycache__/
 Icon
 data/
 models/
+.quickdrawcache/
 
 # Distribution / packaging
 .Python
