@@ -318,7 +318,7 @@ class Model():
             self.encoder_optimizer = lr_decay(self.encoder_optimizer)
             self.decoder_optimizer = lr_decay(self.decoder_optimizer)
         if epoch % 100 == 0:
-            # self.save(epoch)
+            self.save(epoch)
             self.conditional_generation(epoch)
 
     def bivariate_normal_pdf(self, dx, dy):
@@ -475,7 +475,7 @@ def make_image(sequence, epoch, name='_output_'):
 
 if __name__ == "__main__":
     model = Model()
-    for epoch in range(5):
+    for epoch in range(5000):
         model.train(epoch)
 
     '''
