@@ -110,7 +110,7 @@ def make_batch(batch_size):
         batch = Variable(torch.from_numpy(np.stack(strokes, 1)).float().cuda())
     else:
         batch = Variable(torch.from_numpy(np.stack(strokes, 1)).float())
-    return batch, lengths
+    return batch, Variable(torch.Tensor(lengths))
 
 # adaptive lr
 
