@@ -16,7 +16,7 @@ use_cuda = torch.cuda.is_available()
 
 class HParams():
     def __init__(self):
-        self.data_location = 'cat.npz'
+        self.data_location = 'data/pizza.full.npz'
         self.enc_hidden_size = 256
         self.dec_hidden_size = 512
         self.Nz = 128
