@@ -268,7 +268,7 @@ class Model():
         self.decoder.train()
         batch, lengths = make_batch(hp.batch_size)
         # encode:
-        z, self.mu, self.sigma = self.encoder(batch, hp.batch_size)
+        z, self.mu, self.sigma = self.encoder(Variable(batch), hp.batch_size)
         # create start of sequence:
         if use_cuda:
             sos = torch.stack([torch.Tensor([0, 0, 1, 0, 0])]
