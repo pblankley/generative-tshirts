@@ -107,7 +107,7 @@ def make_batch(batch_size):
         indice += 1
 
     if use_cuda:
-        batch = Variable(torch.from_numpy(np.stack(strokes, 1)).float()).cuda()
+        batch = Variable(torch.from_numpy(np.stack(strokes, 1)).float().cuda())
     else:
         batch = Variable(torch.from_numpy(np.stack(strokes, 1)).float())
     return batch, lengths
