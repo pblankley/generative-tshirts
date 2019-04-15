@@ -142,7 +142,7 @@ class EncoderRNN(nn.Module):
             # then must init with zeros
             if use_cuda:
                 hidden = torch.zeros(2, batch_size, hp.enc_hidden_size).cuda()
-                cell = torch.zeros(2, batch_size, hp.enc_hidden_size.cuda())
+                cell = torch.zeros(2, batch_size, hp.enc_hidden_size).cuda()
             else:
                 hidden = torch.zeros(2, batch_size, hp.enc_hidden_size)
                 cell = torch.zeros(2, batch_size, hp.enc_hidden_size)
@@ -310,11 +310,11 @@ class Model():
                 'epoch',
                 epoch,
                 'loss',
-                loss.data[0],
+                loss.data.item(),
                 'LR',
-                LR.data[0],
+                LR.data.item(),
                 'LKL',
-                LKL.data[0])
+                LKL.data.item())
             self.encoder_optimizer = lr_decay(self.encoder_optimizer)
             self.decoder_optimizer = lr_decay(self.decoder_optimizer)
         if epoch % 100 == 0:
@@ -475,7 +475,7 @@ def make_image(sequence, epoch, name='_output_'):
 
 if __name__ == "__main__":
     model = Model()
-    for epoch in range(5000):
+    for epoch in range(5):
         model.train(epoch)
 
     '''
