@@ -110,7 +110,7 @@ def make_batch(batch_size):
         batch = Variable(torch.from_numpy(np.stack(strokes, 1)).float().cuda())
     else:
         batch = Variable(torch.from_numpy(np.stack(strokes, 1)).float())
-    return batch, lengths
+    return batch, Variable(torch.Tensor(lengths))
 
 # adaptive lr
 
@@ -305,7 +305,7 @@ class Model():
         self.encoder_optimizer.step()
         self.decoder_optimizer.step()
         # some print and save:
-        if epoch % 100 == 0:
+        if epoch % 1 == 0:
             print(
                 'epoch',
                 epoch,
@@ -475,7 +475,7 @@ def make_image(sequence, epoch, name='_output_'):
 
 if __name__ == "__main__":
     model = Model()
-    for epoch in range(50001):
+    for epoch in range(5):
         model.train(epoch)
 
     '''
