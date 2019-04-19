@@ -463,7 +463,7 @@ def make_image(sequence, epoch, name='_output_'):
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
     for s in strokes:
-        plt.plot(s[:, 0], -s[:, 1])
+        plt.plot(s[:, 0], -s[:, 1], color='black')
     canvas = plt.get_current_fig_manager().canvas
     canvas.draw()
     pil_image = PIL.Image.frombytes('RGB', canvas.get_width_height(),
@@ -475,10 +475,10 @@ def make_image(sequence, epoch, name='_output_'):
 
 if __name__ == "__main__":
     model = Model()
-    for epoch in range(50001):
-        model.train(epoch)
+    # for epoch in range(50001):
+    #     model.train(epoch)
 
-    '''
-    model.load('encoder.pth','decoder.pth')
+    encoder_pth = 'models/encoderRNN_sel_0.592567_epoch_50000.pth'
+    decoder_pth = 'models/decoderRNN_sel_0.592567_epoch_50000.pth'
+    model.load(encoder_pth, decoder_pth)
     model.conditional_generation(0)
-    # '''
