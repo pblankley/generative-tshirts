@@ -317,7 +317,7 @@ class Model():
                 LKL.data.item())
             self.encoder_optimizer = lr_decay(self.encoder_optimizer)
             self.decoder_optimizer = lr_decay(self.decoder_optimizer)
-        if epoch % 100 == 0:
+        if epoch % 100 == 0 and epoch > 2000:
             self.save(epoch)
             self.conditional_generation(epoch)
 
