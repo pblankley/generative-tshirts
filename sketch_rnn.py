@@ -16,7 +16,7 @@ use_cuda = torch.cuda.is_available()
 
 class HParams():
     def __init__(self):
-        self.data_location = 'data/hedgehog.full.npz'
+        self.data_location = 'data/bird.full.npz'
         self.enc_hidden_size = 256
         self.dec_hidden_size = 512
         self.Nz = 128
