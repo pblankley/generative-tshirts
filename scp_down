@@ -1,0 +1,1 @@
+scp -i ~/.ssh/google_compute_engine root@67.205.141.173:~/tshirts/generative-tshirts/*.jpg .
