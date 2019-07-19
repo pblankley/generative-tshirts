@@ -16,7 +16,7 @@ use_cuda = torch.cuda.is_available()
 
 class HParams():
     def __init__(self):
-        self.data_location = 'data/bird.full.npz'
+        self.data_location = 'data/t-shirt.full.npz'
         self.enc_hidden_size = 256
         self.dec_hidden_size = 512
         self.Nz = 128
@@ -79,7 +79,7 @@ def normalize(strokes):
     return data
 
 
-dataset = np.load(hp.data_location, encoding='latin1')
+dataset = np.load(hp.data_location, encoding='latin1', allow_pickle=True)
 data = dataset['train']
 data = purify(data)
 data = normalize(data)
@@ -317,8 +317,8 @@ class Model():
                 LKL.data.item())
             self.encoder_optimizer = lr_decay(self.encoder_optimizer)
             self.decoder_optimizer = lr_decay(self.decoder_optimizer)
-        if epoch % 100 == 0 and epoch > 2000:
-            self.save(epoch)
+        if epoch % 10 == 0 and epoch > 2000:
+            # self.save(epoch)
             self.conditional_generation(epoch)
 
     def bivariate_normal_pdf(self, dx, dy):
@@ -475,10 +475,10 @@ def make_image(sequence, epoch, name='_output_'):
 
 if __name__ == "__main__":
     model = Model()
-    # for epoch in range(50001):
-    #     model.train(epoch)
+    for epoch in range(50001):
+        model.train(epoch)
 
-    encoder_pth = 'models/encoderRNN_sel_0.592567_epoch_50000.pth'
-    decoder_pth = 'models/decoderRNN_sel_0.592567_epoch_50000.pth'
-    model.load(encoder_pth, decoder_pth)
-    model.conditional_generation(0)
+    # encoder_pth = 'models/encoderRNN_sel_0.592567_epoch_50000.pth'
+    # decoder_pth = 'models/decoderRNN_sel_0.592567_epoch_50000.pth'
+    # model.load(encoder_pth, decoder_pth)
+    # model.conditional_generation(0)
